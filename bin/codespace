@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+$filename = __DIR__.'/../vendor/autoload.php';
+if (!file_exists($filename)) {
+    $filename = __DIR__.'/../../../autoload.php';
+}
+
+if (!file_exists($filename)) {
+    die(
+        'You must set up the project dependencies, run the following commands:'.PHP_EOL .
+        'curl -s http://getcomposer.org/installer | php'.PHP_EOL .
+        'php composer.phar install'.PHP_EOL
+    );
+}
+
+$loader = require $filename;
+
+use Symfony\Component\Console\Application;
+
+$application = new Application('CodeSpace', '1.0.0');
+$application->setCatchExceptions(true);
+$application->add(new \Wispiring\CodeSpace\Command\ScanCommand());
+$application->add(new \Wispiring\CodeSpace\Command\GitFetchCommand());
+$application->add(new \Wispiring\CodeSpace\Command\AtomUpdateCommand());
+$application->add(new \Wispiring\CodeSpace\Command\IdeProjectManagerUpdateCommand());
+$application->add(new \Wispiring\CodeSpace\Command\ExportCommand());
+$application->add(new \Wispiring\CodeSpace\Command\HtmlExportCommand());
+$application->run();

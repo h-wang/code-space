@@ -1,0 +1,24 @@
+{
+    "name": "h-wang/code-space",
+    "description": "Managing your code - projects and repositories",
+    "homepage": "https://github.com/h-wang/code-space",
+    "keywords": ["project", "git", "project", "manager", "management", "code", "repository", "space", "hongliang", "wispiring"],
+    "type": "application",
+    "authors": [
+        {
+            "name": "Hongliang",
+            "email": "code@hongliang.nl",
+            "role": "Development"
+        }
+    ],
+    "bin": ["bin/codespace"],
+    "require": {
+        "symfony/console": "~3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wispiring\\CodeSpace\\": "src/"
+        }
+    },
+    "license": "MIT"
+}
