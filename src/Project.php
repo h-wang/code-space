@@ -4,7 +4,7 @@ namespace Wispiring\CodeSpace;
 
 class Project
 {
-    private $name;
+    protected $name;
 
     public function getName()
     {
@@ -32,7 +32,7 @@ class Project
         return $this;
     }
 
-    private $group;
+    protected $group;
 
     public function getGroup()
     {
@@ -46,7 +46,7 @@ class Project
         return $this;
     }
 
-    private $path;
+    protected $path;
 
     public function getPath()
     {

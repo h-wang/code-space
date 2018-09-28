@@ -5,6 +5,7 @@ namespace Wispiring\CodeSpace\Exporter;
 class HtmlExporter
 {
     protected $repositories;
+
     public function __construct($repositories)
     {
         $this->repositories = $repositories;
@@ -35,7 +36,7 @@ class HtmlExporter
                                 </ul>
                             </div>
                         </div>';
-        foreach ($this->repositories as $i=>$r) {
+        foreach ($this->repositories as $i => $r) {
             $readmeContent = '';
             $filePath = $r->getPath().'/README.md';
             if (file_exists($filePath)) {
@@ -61,8 +62,8 @@ class HtmlExporter
                     </div>
                     ';
         }
-        $html.= '</div></div></body></html>';
-        $html.='<script>
+        $html .= '</div></div></body></html>';
+        $html .= '<script>
                     $(".w-content").each(function(){
                         var content = $(this).html();
                         var converter = new Markdown.Converter();
@@ -70,6 +71,7 @@ class HtmlExporter
                     });
                 </script>
                 ';
+
         return $html;
     }
 
