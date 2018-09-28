@@ -6,7 +6,7 @@ Manages your local development projects and code repositories.
 When developing projects, especially micro-services, we often end up with hundres of code repositories on our dev machines. CodeSpace helps to manage these repositories and do batch operations on them easily.
 You can use it as a stand-alone tool. There is no need to integrate into any project.
 
-CodeSpace is inspired by the [LinkORB Projex](https://github.com/linkorb/projex)
+CodeSpace is inspired by the [LinkORB Projex](https://github.com/linkorb/projex) and [Hotel](https://github.com/typicode/hotel).
 ## Features
 
 ### Project scanner
