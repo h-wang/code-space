@@ -8,7 +8,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Wispiring\CodeSpace\Scanner;
-use RuntimeException;
 
 class BaseCommand extends Command
 {
@@ -34,7 +33,7 @@ class BaseCommand extends Command
 
     protected function getHomeDirectory()
     {
-        return getenv("HOME");
+        return getenv('HOME');
     }
 
     protected function getScanPath(InputInterface $input)
@@ -55,14 +54,11 @@ class BaseCommand extends Command
             $this->scanPath = rtrim($path, '/');
         }
 
-
         return $this->scanPath;
     }
 
     protected function scanPath(InputInterface $input)
     {
-        $scanner = new Scanner();
-
-        return $scanner->scan($this->getScanPath($input));
+        return (new Scanner())->scan($this->getScanPath($input));
     }
 }

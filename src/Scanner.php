@@ -4,15 +4,24 @@ namespace Wispiring\CodeSpace;
 
 class Scanner
 {
+    const SKIP_DIR_NAME = [
+        '.',
+        '..',
+        '.git',
+        'vendor',
+        'node_modules',
+        '.vscode',
+        '.c9',
+        '.metadata',
+    ];
+
     public function scan($path)
     {
-        $dirs = array();
+        $dirs = $projects = [];
         $this->scanRecursive($path, $dirs);
 
-        $projects= array();
         foreach ($dirs as $dir) {
-            $project = new Project();
-            $projects []= $project
+            $projects[] = (new Project())
                 ->setShortName(basename($dir))
                 ->setGroup(basename(dirname($dir)))
                 ->setName(basename(dirname($dir)).'/'.basename($dir))
@@ -26,26 +35,14 @@ class Scanner
     {
         $files = scandir($path);
         foreach ($files as $filename) {
-            $skip = false;
-            switch ($filename) {
-                case '.':
-                case '..':
-                case '.git':
-                case 'vendor':
-                case 'node_modules':
-                    $skip = true;
-                    break;
+            $fullPath = $path.'/'.$filename;
+            if (in_array($filename, self::SKIP_DIR_NAME) || !is_dir($fullPath)) {
+                continue;
             }
-
-            if (!$skip) {
-                if (is_dir($path.'/'.$filename)) {
-                    if (file_exists($path.'/'.$filename.'/.git/HEAD')) {
-                        // Found a .git repository, add it to the dirs list
-                        $dirs []= $path.'/'.$filename;
-                    } else {
-                        $this->scanRecursive($path.'/'.$filename, $dirs);
-                    }
-                }
+            if (file_exists($fullPath.'/.git/HEAD')) {
+                $dirs[] = $fullPath;
+            } else {
+                $this->scanRecursive($fullPath, $dirs);
             }
         }
     }

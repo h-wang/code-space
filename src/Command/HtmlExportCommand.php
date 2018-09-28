@@ -6,9 +6,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Wispiring\CodeSpace\Scanner;
 use Wispiring\CodeSpace\Exporter\HtmlExporter;
-use RuntimeException;
 
 class HtmlExportCommand extends BaseCommand
 {
@@ -38,8 +36,8 @@ class HtmlExportCommand extends BaseCommand
 
         $o = $this->getStyler($input, $output);
         $o->title('CodeSpace: Exporting repositories');
-        $o->section("\xF0\x9F\x93\x81 : [<info>".$this->scanPath."</>]");
-        $o->section("\xF0\x9F\x93\x84 : [<info>".$targetPath."</>]");
+        $o->section("\xF0\x9F\x93\x81 : [<info>".$this->scanPath.'</>]');
+        $o->section("\xF0\x9F\x93\x84 : [<info>".$targetPath.'</>]');
 
         $exporter = new HtmlExporter($spaces);
         $exporter->exportToFile($targetPath);

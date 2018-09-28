@@ -26,7 +26,7 @@ class ScanCommand extends BaseCommand
 
         $o = $this->getStyler($input, $output);
         $o->title('CodeSpace: Code repository scan');
-        $o->section("\xF0\x9F\x93\x81 : [<info>".$this->scanPath."</>]");
+        $o->section("\xF0\x9F\x93\x81 : [<info>".$this->scanPath.'</>]');
         $o->listing(
             array_map(
                 function ($c) {

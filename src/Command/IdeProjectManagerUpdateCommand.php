@@ -2,14 +2,11 @@
 
 namespace Wispiring\CodeSpace\Command;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Wispiring\CodeSpace\Scanner;
 use Wispiring\CodeSpace\Exporter\VscodeProjectJsonExporter;
 use Wispiring\CodeSpace\Exporter\AtomProjectsCsonExporter;
-use RuntimeException;
 
 class IdeProjectManagerUpdateCommand extends BaseCommand
 {
@@ -39,7 +36,7 @@ class IdeProjectManagerUpdateCommand extends BaseCommand
         $ideName = $input->getOption('ide');
 
         $o = $this->getStyler($input, $output);
-        $o->title("CodeSpace: Scanning project in \xF0\x9F\x93\x81 : [<info>".$this->scanPath."</>]");
+        $o->title("CodeSpace: Scanning project in \xF0\x9F\x93\x81 : [<info>".$this->scanPath.'</>]');
 
         switch (strtolower($ideName)) {
             case 'atom':
